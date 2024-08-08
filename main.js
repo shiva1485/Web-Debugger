@@ -10,18 +10,14 @@ const autoScroll = document.getElementById("autoScroll");
 const settings = document.getElementById("settings");
 const inputBar = document.getElementById("inputBar");
 const selectedMsgType = document.getElementById("msgType");
+const upload = document.getElementById("upload");
+
 
 let darkModeCount = 1; //default mode
 let scrollPressed = true; //default
 let fontSize = 16; //default
 let msgTillNow = "";
 
-//related to time stamp
-let now = new Date();
-let timestamp = now.toLocaleTimeString([], {
-  hour: "2-digit",
-  minute: "2-digit",
-});
 
 zoomInButton.addEventListener("click", () => {
   fontSize += 2;
@@ -61,7 +57,9 @@ downloadBtn.addEventListener("click", () => {
 
   const link = document.createElement("a");
 
-  link.download = "web_debug_ouptut.txt";
+  const dayTimeNow = new Date();
+
+  link.download = `web_debug_ouptut ${dayTimeNow}.txt`;
 
   link.href = window.URL.createObjectURL(blob);
 
@@ -90,6 +88,14 @@ function settingsClosePopup() {
 
 function saveSettings() {
   settingsClosePopup(); //finally
+}
+
+upload.addEventListener("click", () => {
+  document.getElementById("uploadPopUp").classList.remove("hidden");
+});
+
+function uploadClosePopup() {
+  document.getElementById("uploadPopUp").classList.add("hidden");
 }
 
 function sendInputData() {

@@ -36,7 +36,6 @@ function connectEsp32(esp32Urlparam = esp32Url) {
   websocket.onopen = function (event) {
     alert("Connected");
     console.log("WebSocket connection established");
-    startConnectionCheck();
   };
 
   // Handle errors
@@ -59,7 +58,13 @@ function connectEsp32(esp32Urlparam = esp32Url) {
 }
 
 function displayData(data) {
-  msgTillNow += "(" + timestamp + ")" + "--> " + data + "\n";
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+  msgTillNow += "(" + formattedTime + ")" + "--> " + data + "\n";
   outputPanel.value = msgTillNow;
   if (scrollPressed) {
     outputPanel.scrollTop = outputPanel.scrollHeight; // Scroll to the bottom

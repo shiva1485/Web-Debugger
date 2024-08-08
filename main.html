@@ -55,6 +55,9 @@
       <button class="text-black-500 hover:text-yellow-300" id="settings">
         Settings
       </button>
+      <button class="text-black-500 hover:text-yellow-300" id="upload">
+        Upload code
+      </button>
     </div>
 
     <div class="flex items-center">
@@ -66,7 +69,7 @@
       />
       <select id="msgType" class="ml-2 rounded-md p-1">
         <option value="input" selected>Input</option>
-        <option value="text">Plain Text</option>
+        <option value="text">Other</option>
       </select>
       <button
         class="ml-3 bg-blue-500 rounded-full text-white h-10 flex-shrink-0 px-3 py-1"
@@ -122,6 +125,29 @@
       </div>
     </div>
 
+    <div
+      id="uploadPopUp"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg w-3/4 text-center">
+        <h2 class="text-xl font-bold mb-4">Upload code Wirelessly</h2>
+
+        <form method="POST" action="#" enctype="multipart/form-data" id="upload_form">
+          <input type="file" name="update">
+          <input type="submit" value="Update">
+      </form>
+      
+      <div id="prg">progress: 0%</div>
+
+        <button
+          class="bg-red-500 text-white px-4 py-2 rounded"
+          onclick="uploadClosePopup()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
     <div class="bg-gray-900 p-1 rounded-md">
       <h3 class="text-red-500">OUTPUT</h3>
       <div class="flex justify-center">
@@ -138,5 +164,6 @@
 
     <script src="./main.js"></script>
     <script src="./webSocket.js"></script>
+    <script src="./wirelessUpload.js"></script>
   </body>
 </html>
